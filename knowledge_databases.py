@@ -8,31 +8,35 @@ Base.metadata.create_all(engine)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-def add_article():
+def add_article(name,topic,rating):
 
 	article_object = Knowledge(
         name=name,
         topic=topic,
         rating=rating)
 	session.add(article_object)
-	ession.commit()
+	session.commit()
+
+# add_article("Databases","CS",0)
 
 def query_all_articles():
-	Knowledge = session.query(
-		Knowledge).all()
-    return Knowledge
-    print(query_all())
+	articles = session.query(Knowledge).all()
+	return articles
+print(query_all_articles())
 
+def query_article_by_topic(inputtopic):
+	Knowledge=session.query(Knowledge).filter_by(topic=inputtopic).all()
+	return Knowledge
 	
 
-def query_article_by_topic():
-	pass
-
 def delete_article_by_topic():
-	pass
+	session.query(Knowledge).filter_by(topic=topic).delete()
+	session.commit()
+
 
 def delete_all_articles():
-	pass
+	session.query(Knowledge).delete()
+	session.commit()
 
 def edit_article_rating():
 	pass

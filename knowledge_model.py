@@ -6,11 +6,15 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 class Knowledge(Base):
-   __tablename__ = 'knowledge'
-   knowledge_id = Column(Integer, primary_key=True)
-   name = Column(String)
-   topic = Column(String)
-   rating = Column(Integer)
+	__tablename__ = 'knowledge'
+	knowledge_id = Column(Integer, primary_key=True)
+	name = Column(String)
+	topic = Column(String)
+	rating = Column(Integer)
+
+	def __repr__(self):
+		return("Name : {}\n"
+			"Topic : {}").format(self.name,self.topic)
 
 	# Create a table with 4 columns
 	# The first column will be the primary key
