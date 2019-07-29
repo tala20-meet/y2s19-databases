@@ -9,10 +9,21 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 def add_article():
-	pass
+
+	article_object = Knowledge(
+        name=name,
+        topic=topic,
+        rating=rating)
+	session.add(article_object)
+	ession.commit()
 
 def query_all_articles():
-	pass
+	Knowledge = session.query(
+		Knowledge).all()
+    return Knowledge
+    print(query_all())
+
+	
 
 def query_article_by_topic():
 	pass
